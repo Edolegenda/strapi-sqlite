@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "deals",
+  "info": {
+    "singularName": "deal",
+    "pluralName": "deals",
+    "displayName": "Deal",
+    "description": "Manuell geprüfte Angebote"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": true },
+    "content-type-builder": { "visible": true }
+  },
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "slug": { "type": "uid", "targetField": "title" },
+
+    "old_price": { "type": "decimal" },
+    "new_price": { "type": "decimal", "required": true },
+    "discount_pct": { "type": "integer" },
+
+    "verdict": {
+      "type": "enumeration",
+      "enum": ["kein_deal","ok","gut","top"],
+      "default": "ok"
+    },
+    "reasoning": { "type": "richtext" },
+
+    "shipping_cost": { "type": "decimal" },
+    "valid_until": { "type": "date" },
+
+    "affiliate_url": { "type": "string" },
+    "original_url": { "type": "string" },
+
+    "hero_image": { "type": "media", "multiple": false, "required": false },
+
+    "retailer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::retailer.retailer"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category"
+    }
+  }
+}
