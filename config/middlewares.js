@@ -6,10 +6,14 @@ module.exports = [
     config: {
       enabled: true,
       origin: [
-        'http://localhost:3000',     // Für lokale Tests
-        'https://dealcheck.ch',      // Deine Domain
-        'https://dealcheck.vercel.app', // Falls du Vercel-Preview nutzt
+        'http://localhost:3000',       // lokale Entwicklung
+        'https://dealcheck.ch',        // deine spätere Live-Domain
+        // Vercel-Previews (Regex, NICHT als String!)
+        /\.vercel\.app$/
       ],
+      methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS','HEAD'],
+      headers: ['Content-Type','Authorization','Origin','Accept'],
+      keepHeadersOnError: true
     },
   },
   'strapi::poweredBy',
